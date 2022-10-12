@@ -7,5 +7,6 @@ namespace CustomShop.Models
 {
     public class Models
     {
+        string str;
     }
 }
