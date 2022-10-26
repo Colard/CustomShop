@@ -1,30 +1,189 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    padding:0px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body * {
+    color: #555;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+body h1 {
+    color: #333;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+body a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s
 }
 
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
-    background-color: #777;
-    border-color: #fff
+body a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+body header {
+
+}
+
+body header .site-name {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #83CAFC;
+}
+
+body header .site-name a {
+    height:100%;
+    display: flex;
+    align-items: center;
+}
+
+body header .site-nav-bar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+    background-color: #0a0a0a;
+}
+
+body footer {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 15px;
+    background-color: #0a0a0a;
+    position: static;
+    left: 0;
+    bottom: 0;
+}
+
+footer svg {
+    width: 50px;
+    height:auto;
+}
+
+footer img {
+    width: 50px;
+    height: auto;
+}
+
+body footer > * {
+    padding: 10px 0;
+}
+
+body footer .footer-info {
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+body footer .footer-info .footer-about-us{
+    display:flex;
+    flex-direction: column;
+}
+
+body header .site-nav-bar a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+body {
+    background-color: #000000;
+}
+
+body .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+body .content {
+    width: 90%;
+}
+
+body .content .good-grid-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding:20px 0;
+    justify-items: center;
+}
+
+body .content .good-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    width: 100%;
+}
+
+body .content .good-box .good-img {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    position:relative;
+    border-radius: 3%;
+}
+
+body .content .good-box img {
+    border-radius: 3%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+}
+
+body .content .good-box .info-about-good {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+body .content .good-box div.new-text {
+    background-color: #39ba40;
+    color:white;
+    padding:1px 10px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index:3;
+}
+
+@media (max-width: 1200px) {
+    body .content .good-grid-box {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body footer .footer-info .footer-work-info {
+        display:none;
+    }
+
+    body .content .good-grid-box {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body .content .good-grid-box {
+        grid-template-columns: 1fr ;
+    }
 }
