@@ -16,16 +16,16 @@ namespace CustomShop.Models
         public string Name { get; set; }
 
         [Display(Name = "Фотографія")]
-        [Required(ErrorMessage = "Поле повинно бути встановлено")]
         public byte[] Image { get; set; }
 
         [Display(Name = "Опис")]
+        [Required(ErrorMessage = "Поле повинно бути встановлено")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Display(Name = "Ціна")]
         [Required(ErrorMessage = "Поле повинно бути встановлено")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Тип товару")]
         [Required(ErrorMessage = "Поле повинно бути встановлено")]
@@ -41,7 +41,7 @@ namespace CustomShop.Models
         [Display(Name = "Код кольору")]
         [Required(ErrorMessage = "Поле повинно бути встановлено")]
         public string Code { get; set; }
-        public int GoodId { get; set; }
+        public int? GoodId { get; set; }
 
         public Good Good { get; set; }
     }

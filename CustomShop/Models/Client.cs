@@ -58,12 +58,9 @@ namespace CustomShop.Models
         public DateTime Date { get; set; }
         public int ClientId { get; set; }
         public int PurchaseStateId { get; set; }
-        public int SizeId { get; set; }
 
-
-        public Client Client { get; set; }
         public PurchaseState PurchaseState { get; set; }
-        public Size Size { get; set; }
+        public Client Client { get; set; }
         public IEnumerable<Cart> Cart { get; set; }
 
     }

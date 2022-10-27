@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CustomShop.Models.Good>
+
+@{
+    ViewBag.Title = "Товари";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class ="create-form centered-div">
+    <h2>Список товарів</h2>
+
+    <div class="search">
+        <form method="get">
+            <div>
+                <p>Елементи назви:</p>
+                <input name="searchText" />
+            </div>
+            <div>
+                <p>Тип:</p>
+                @Html.DropDownList("GoodTypeId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div>
+                <p>Пошук: </p>
+                <input type="submit" value="Шукати" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <p class="create-link">
+        @Html.ActionLink("Створити новий товар", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Тип
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoodType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="image-cell">
+                    <div class="micro-img">
+                        @Html.Raw("<img style='width:auto; height:80px;' src=\"data:image/jpeg;base64,"
+                                   + Convert.ToBase64String(item.Image) + "\" />")
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Редагувати", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Деталі", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

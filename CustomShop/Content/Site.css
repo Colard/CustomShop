@@ -6,6 +6,10 @@ body * {
     color: #555;
 }
 
+hr {
+    width: 100%;
+    border-color: #555;
+}
 
 body h1 {
     color: #333;
@@ -164,6 +168,80 @@ body .content .good-box div.new-text {
     left: 10px;
     z-index:3;
 }
+
+body .info-panel .info-about-good{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+body .info-panel .info-about-good {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+body .img-info {
+    overflow: hidden;
+    width: 100%;
+    min-height:500px;
+    position:relative;
+}
+
+body .img-info img {
+    position: absolute;
+    height: 500px;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+body .color-list {
+    display: flex;
+    justify-content: center;
+}
+
+
+body .color-list > div {
+    width: 30px;
+    height: 30px;
+    border: white solid 3px;
+    margin: 0 10px;
+}
+
+body .convertToHTML hr {
+    padding:1px;
+}
+
+body .price-text {
+    color: white;
+}
+
+body .good-description .color-list {
+    justify-content: flex-start;
+}
+
+body .bottom-links {
+    display:flex;
+}
+
+body .bottom-links a {
+    font-size: 25px;
+    margin: 25px 25px 25px 0;
+}
+
+body .content .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+    body .content .info-panel * {
+        color: #cecece;
+    }
 
 @media (max-width: 1200px) {
     body .content .good-grid-box {

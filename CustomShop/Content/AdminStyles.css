@@ -1,0 +1,127 @@
+﻿body .create-form {
+    margin-bottom: 40px;
+}
+
+body .create-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body .create-form > * {
+    padding: 20px 0;
+}
+
+body .create-form .img-editor-container {
+    border: #555 dashed 3px;
+    height: 400px;
+    width: 80%;
+    cursor: pointer;
+    position:relative;
+    overflow:hidden;
+}
+
+body .create-form .img-editor-container p, body .create-form .img-editor-container .img-view {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body .create-form .img-editor-container img {
+    height:100%;
+    width:auto;
+}
+
+body .create-form .img-editor-container .disabeled-file-input {
+   visibility: hidden;
+}
+
+body .create-form .form-horizontal {
+    width:80%;
+}
+
+body .create-form .form-horizontal input, body .create-form .form-horizontal select,
+body .create-form .form-horizontal option, body .create-form .form-horizontal textbox {
+    color: black;
+}
+
+body .create-form .form-horizontal textarea {
+    resize: vertical;
+}
+
+body .submit-button {
+    display:flex;
+    justify-content:center;
+}
+
+body .submit-button input{
+    font-size: 20px;
+}
+
+body .return-link a {
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+body .color-list {
+    display: flex;
+    justify-content: center;
+}
+
+body .color-list > div {
+    width: 30px;
+    height: 30px;
+    border: white solid 3px;
+    margin: 0 10px;
+}
+
+body .micro-img {
+    width: 80px;
+    overflow:hidden;
+}
+
+body .centered-div {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+body .content .search {
+    width:100%;
+}
+
+body .content .search form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+body .content .search input, body .content .search select {
+    height: 30px;
+}
+
+body .content .search div {
+    margin: 0 10px;
+}
+
+body .content .create-link a{
+    font-size: 20px;
+}
+
+body .content .create-link {
+    padding: 2px 0;
+}
+
+body .content .table tr td {
+    vertical-align: baseline;
+}
+
+body .create-form form {
+    width:100%;
+}
+
+body .container .disabled-border {
+    border:none;
+}

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/AdminStyles.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="site-name">
+            <a href="Home/Index"><h1>ddd.Shop</h1></a>
+        </div>
+        <div class="site-nav-bar">
+            <a href="">Замовлення</a>
+            @Html.ActionLink("Товари", "Index", "GoodsEditor")
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/Scripts/adminScripts.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
