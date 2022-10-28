@@ -139,6 +139,10 @@
     <Compile Include="Migrations\202210260958217_v1.1.designer.cs">
       <DependentUpon>202210260958217_v1.1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210280750037_v3.cs" />
+    <Compile Include="Migrations\202210280750037_v3.designer.cs">
+      <DependentUpon>202210280750037_v3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Client.cs" />
@@ -197,10 +201,14 @@
     <Content Include="Views\GoodsEditor\Details.cshtml" />
     <Content Include="Views\GoodsEditor\Edit.cshtml" />
     <Content Include="Views\GoodsEditor\Index.cshtml" />
+    <Content Include="Views\Goods\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202210260958217_v1.1.resx">
       <DependentUpon>202210260958217_v1.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210280750037_v3.resx">
+      <DependentUpon>202210280750037_v3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

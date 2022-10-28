@@ -13,11 +13,11 @@
             <a href="Home/Index"><h1>ddd.Shop</h1></a>
         </div>
         <div class="site-nav-bar">
-            <a href="">Усі товари</a>
-            <a href="">Худі та світшоти</a>
-            <a href="">Футболки</a>
-            <a href="">Штани та шорти</a>
-            <a href="">Аксесуари</a>
+            <a href="Goods/Index">Усі товари</a>
+            <a href="Goods/Index/Худі та світшоти">Худі та світшоти</a>
+            <a href="Goods/Index/Футболки">Футболки</a>
+            <a href="Goods/Index/Штани та шорти">Штани та шорти</a>
+            <a href="Goods/Index/Аксесуари">Аксесуари</a>
             <a href="">Кошик</a>
         </div>
     </header>
@@ -54,9 +54,10 @@
         </div>
     </footer>
 
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/UseScript.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

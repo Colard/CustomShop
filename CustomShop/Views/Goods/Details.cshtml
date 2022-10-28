@@ -1,0 +1,55 @@
+﻿@model CustomShop.Models.Good
+@using CustomShop.Models;
+
+@{
+    ViewBag.Title = "Деталі";
+}
+<div>
+    <h1 class="price-text centered">@Model.Name</h1>
+
+    <div class="info-panel">
+        <input class="good-index" value="@Model.Id" hidden>
+        <hr />
+        <div class="info-about-good">
+            <div class="img-info">
+                @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.Image) + "\" />")
+            </div>
+            <div class="text-info">
+                <h2 class="type-name">Тип предмета: @Model.GoodType.Name </h2>
+                <div class="good-description">
+                    <h2 class="good-description-name">Опис: </h2>
+                    <p class="convertToHTML">@Model.Description</p>
+                </div>
+                <h1 class="price-text">Ціна: @Model.Price</h1>
+                <div class="good-description">
+                    <p>Доступні кольори:</p>
+                    <div class="color-list cheker">
+                        @foreach (Color el in ViewBag.Colors)
+                        {
+                            <div style="background-color: @el.Code;" name="@el.Id"></div>
+                        }
+                    </div>
+                </div>
+                <div class="good-description">
+                    <p>Доступні роміри:</p>
+                    <div class="sizes-list cheker">
+                        @foreach (Size el in ViewBag.Sizes)
+                        {
+                            <div name="@el.Id">@el.Name</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="bottom-links">
+                    <a class="add-to-cart" href="/Goods/Index">В корзину</a>
+                </div>
+
+                <p class="error-place" style="color:red; display: none">Оберіть колір та розмір!</p>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="bottom-links centered">
+        @Html.ActionLink("Повернутись до списку", "Index")
+    </div>
+</div>

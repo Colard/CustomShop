@@ -9,8 +9,8 @@ namespace CustomShop.Models
     public class ShopContext : DbContext
     {
         public ShopContext() 
-            : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DataBase.mdf;Integrated Security=True") {}
-
+            : base("Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DataBase.mdf;Integrated Security = True") {}
+        
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Client> Clients { get; set; }

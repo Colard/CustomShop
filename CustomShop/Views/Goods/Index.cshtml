@@ -1,118 +1,29 @@
-﻿@{
+﻿@model IEnumerable<CustomShop.Models.Good>
+@using CustomShop.Models;
+
+@{
     ViewBag.Title = "Товари";
 }
 
 <center>
+
     <div class="good-grid-box">
-        <div class="good-box new">
-            <div class="good-img">
-                <div class="new-text">Новинка!</div>
-                <img src="..\..\Content\123.jpg">
+        @foreach (Good item in Model)
+        {
+          <a href="/Goods/Details/@item.Id">
+            <div class="good-box">
+                <div class="good-img">
+                    @Html.Raw("<img  src=\"data:image/jpeg;base64,"+ Convert.ToBase64String(item.Image) + "\" />")
+                </div>
+
+                <div class="info-about-good">
+                    <p><b>@item.Name</b></p>
+                    <p class="price"><b>@Math.Round(item.Price, 2)</b></p>
+                </div>
             </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\312.png">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\123.jpg">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\312.png">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\123.jpg">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\312.png">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\123.jpg">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\312.png">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
-        <div class="good-box">
-            <div class="good-img">
-                <img src="..\..\Content\123.jpg">
-            </div>
-
-            <div class="info-about-good">
-                <p><b>Text (232x23)</b></p>
-                <p class="price"><b>1223.00$</b></p>
-            </div>
-
-        </div>
-
+          </a>
+        }
 
     </div>
+
 </center>
