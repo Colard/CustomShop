@@ -82,7 +82,6 @@ function createMapOfTags() {
     for (let a of textNodes) {
         let text = a.innerHTML;
         for (const [key, value] of Tags) {
-            console.log(key)
             text = text.replaceAll(key, value);
         }
         a.innerHTML = text;
