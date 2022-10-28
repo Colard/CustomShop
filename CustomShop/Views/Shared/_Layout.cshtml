@@ -10,14 +10,14 @@
 <body>
     <header>
         <div class="site-name">
-            <a href="Home/Index"><h1>ddd.Shop</h1></a>
+            <a href="/Home/Index"><h1>ddd.Shop</h1></a>
         </div>
         <div class="site-nav-bar">
-            <a href="Goods/Index">Усі товари</a>
-            <a href="Goods/Index/Худі та світшоти">Худі та світшоти</a>
-            <a href="Goods/Index/Футболки">Футболки</a>
-            <a href="Goods/Index/Штани та шорти">Штани та шорти</a>
-            <a href="Goods/Index/Аксесуари">Аксесуари</a>
+            @Html.ActionLink("Усі товари", "Index", "Goods", new { }, null)
+            @Html.ActionLink("Худі та світшоти", "Index", "Goods", new { }, null)
+            @Html.ActionLink("Футболки", "Index", "Goods", new { }, null)
+            @Html.ActionLink("Штани та шорти", "Index", "Goods", new { }, null)
+            @Html.ActionLink("Аксесуари", "Index", "Goods", new { }, null)
             <a href="">Кошик</a>
         </div>
     </header>
