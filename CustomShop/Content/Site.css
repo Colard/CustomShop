@@ -132,11 +132,11 @@ body .content .good-box {
     width: 100%;
 }
 
-body .content .good-box .good-img {
+body .content .good-box .good-img, body .content .good-box .good-img-cart {
     height: 200px;
     width: 100%;
     overflow: hidden;
-    position:relative;
+    position: relative;
     border-radius: 3%;
 }
 
@@ -282,6 +282,83 @@ body .add-to-cart {
     cursor:pointer;
 }
 
+body .cart-link .cart-count {
+    margin: 0;
+    position: relative;
+}
+
+body .cart-link {
+    position:relative;
+}
+
+body .cart-link .cart-count:before {
+    content: '';
+    background-image: url(cartIco.png);
+    position: absolute;
+    background-size: 40px 40px;
+    top: -9px;
+    left: -40px;
+    width: 40px;
+    height: 40px;
+}
+
+body .good-box.bordered {
+    border: 3px solid #555;
+    border-radius: 10px;
+    padding: 8px
+}
+
+body .bottom-links.check-cart-goods a{
+    margin: 25px 0;
+}
+
+body .bottom-links.return-to-shop a {
+    margin: 0 0 10px 0;
+}
+
+body .delete-good-from-cart {
+    margin: 8px 0;
+    font-size: 20px;
+}
+
+body .delete-good-from-cart {
+    margin: 8px 0;
+    font-size: 20px;
+}
+
+body .purchase-form form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+body .purchase-form .form-group {
+    width: 450px;
+    display:flex;
+    flex-direction:column;
+    text-align: left;
+}
+
+body .purchase-form .form-group .control-label {
+    width:auto;
+    text-align: left;
+}
+
+body .purchase-form .form-horizontal  {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+body .purchase-form .submit-button {
+    width: 200px;
+    margin:10px 0;
+}
+
+body .content .no-side-margin > *{
+    margin: 20px 0px;
+}
+
 @media (max-width: 1200px) {
     body .content .good-grid-box {
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -296,11 +373,21 @@ body .add-to-cart {
     body .content .good-grid-box {
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    body .purchase-form .form-group {
+        text-align: left;
+    }
 }
 
 @media (max-width: 480px) {
 
     body .content .good-grid-box {
         grid-template-columns: 1fr ;
+    }
+}
+
+@media (min-width: 992px)  {
+    body .purchase-form .col-md-10 {
+        width: 100%;
     }
 }

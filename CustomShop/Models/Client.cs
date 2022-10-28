@@ -43,6 +43,7 @@ namespace CustomShop.Models
         [Required(ErrorMessage = "Поле повинно бути встановлено")]
         [Display(Name = "Поштовий індекс")]
         [StringLength(5, MinimumLength = 5, ErrorMessage = "Поштовий індекс України має лише 5 символів")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Некоректний індекс")]
         public string PostIndex { get; set; }
 
         [Required(ErrorMessage = "Поле повинно бути встановлено")]
@@ -52,9 +53,10 @@ namespace CustomShop.Models
         public Post Post { get; set; }
     }
 
-    public class Purchase {
+    public class Purchase
+    {
         public int Id { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public DateTime Date { get; set; }
         public int ClientId { get; set; }
         public int PurchaseStateId { get; set; }

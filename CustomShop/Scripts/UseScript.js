@@ -20,7 +20,7 @@ function setCookie(name, value) {
 }
 
 function deleteCookie(name) {
-    setCookie(name, "", {'max-age': -1 })
+    setCookie(name, "", { 'max-age': -1 })
 }
 
 function addToCart(goodId, colorId, sizeId) {
@@ -102,29 +102,121 @@ function createMapOfTags() {
     let errorPlace = document.querySelector(".error-place");
     let adderLink = document.querySelector(".add-to-cart");
 
-    if (adderLink) adderLink.onclick = (e) => {
-        addToCartLink(errorPlace, e);
-    } 
+    if (adderLink) adderLink.addEventListener('click', listener);
+
+    function listener(e) {
+        e.preventDefault();
+        addToCartLink(errorPlace, listener, adderLink);
+    }
 
 })();
 
-function addToCartLink(errorPlace, event) {
+function addToCartLink(errorPlace, listener, target) {
     let size = document.querySelector(".info-panel .sizes-list .active");
     let color = document.querySelector(".info-panel .color-list .active");
 
     if (!(size && color)) {
         errorPlace.style.display = "block";
-        e.preventDefault();
         return;
-    } 
+    }
 
     let goodID = document.querySelector(".info-panel .good-index").value;
     let sizeID = size.getAttribute("name");
     let colorID = color.getAttribute("name");
 
     addToCart(goodID, colorID, sizeID);
-
+    alert("Товар додано в корзину!");
+    target.removeEventListener('click', listener);
+    target.click();
 }
+
+(function dynamicCart() {
+    let countText = document.querySelector(".cart-link .cart-count");
+
+    if (!getCookie("cart")) {
+        setCookie("cart", JSON.stringify([]));
+    }
+
+    let count;
+    try {
+        count = JSON.parse(getCookie("cart")).length;
+    } catch {
+        count = 0;
+    }
+
+    if (countText) countText.innerHTML = count;
+})();
+
+(function checkCartGoods() {
+    let link = document.querySelector(".bottom-links.check-cart-goods a");
+
+    if (link) link.addEventListener('click', listener);
+
+    function listener(e) {
+        e.preventDefault();
+        checkCart(listener, link);
+    }
+
+    function checkCart(listener, link) {
+        let count;
+        try {
+            count = JSON.parse(getCookie("cart")).length;
+        } catch {
+            count = 0;
+        }
+
+        if (count == 0) {
+            alert("Ваша корзина порожня!");
+            return;
+        }
+
+        link.removeEventListener('click', listener);
+        link.click();
+    }
+})();
+
+
+(function removeFromCart() {
+    let links = document.querySelectorAll(".delete-good-from-cart");
+
+    if (links) {
+        for (let el of links) {
+            el.addEventListener('click', listener);
+        }
+    }
+
+    function listener(e) {
+        e.preventDefault();
+        let link = e.target;
+
+        let YorN = confirm("Ви впевненні що бажаєте видалити товар з корзини?");
+        if (!YorN) return;
+
+        checkGoodInCart(listener, link);
+    }
+
+    function checkGoodInCart(listener, link) {
+        let goodId = link.getAttribute("goodId");
+        let colorId = link.getAttribute("colorId");
+        let sizeId = link.getAttribute("sizeId");
+
+
+        let arrOfObjects;
+
+        try {
+            arrOfObjects = JSON.parse(getCookie("cart"));
+        } catch {
+            return;
+        }
+
+        console.log(1);
+        arrOfObjects = arrOfObjects.filter(el => el.goodId != goodId || el.colorId != colorId || el.sizeId != sizeId);
+        setCookie("cart", JSON.stringify(arrOfObjects));
+
+        link.removeEventListener('click', listener);
+        link.click();
+    }
+})();
 
 choser(".color-list.cheker");
 choser(".sizes-list.cheker");

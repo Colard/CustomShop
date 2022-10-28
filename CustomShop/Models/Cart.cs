@@ -14,7 +14,7 @@ namespace CustomShop.Models
         public int ColorId { get; set; }
 
         public Color Color { get; set; }
-        public Client Client { get; set; }
+        public Size Size { get; set; }
         public Good Good { get; set; }
         public Purchase Purchase { get; set; }
     }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CustomShop.Controllers.GoodSettings>
+@using CustomShop.Controllers;
+
+@{
+    ViewBag.Title = "Корзина";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+
+    <div class="good-grid-box">
+        @foreach (GoodSettings item in Model)
+        {
+            <div class="good-box bordered">
+                <div class="good-img-cart">
+                    @Html.Raw("<img  src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.Good.Image) + "\" />")
+                </div>
+
+                <div class="info-about-good">
+                    <p><b>@item.Good.Name</b></p>
+                    <p class="price"><b>@Math.Round(item.Good.Price, 2) ₴</b></p>
+
+                    <div class="color-list sizes-list">
+                        <div style="background-color: @item.Color.Code;"></div>
+                        <div>@item.Size.Name</div>
+                    </div>
+                </div>
+                <a href="/Home/Cart" class="delete-good-from-cart" colorId="@item.Color.Id" goodId="@item.Good.Id" sizeId="@item.Size.Id">Видалити</a>
+            </div>
+        }
+
+    </div>
+
+    <div class="centered">
+        <h2>До сплати: @Math.Round((decimal)ViewBag.Price, 2) ₴</h2>
+    </div>
+
+    <div class="bottom-links centered check-cart-goods">
+        @Html.ActionLink("Підтвердити замовлення", "AddPurchase")
+    </div>
+
+    <div class="bottom-links centered return-to-shop">
+        @Html.ActionLink("Повернутись до покупок", "Index", "Goods")
+    </div>
+
+</center>
