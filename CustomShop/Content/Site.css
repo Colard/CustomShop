@@ -29,30 +29,30 @@ body a {
 body header {
 }
 
-    body header .site-name {
-        height: 100px;
-        width: 100%;
+body header .site-name {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #83CAFC;
+}
+
+    body header .site-name a {
+        height: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
-        background-color: #83CAFC;
     }
 
-        body header .site-name a {
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-    body header .site-nav-bar {
-        height: 100px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        font-size: 20px;
-        background-color: #0a0a0a;
-    }
+body header .site-nav-bar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+    background-color: #0a0a0a;
+}
 
 body footer {
     height: auto;

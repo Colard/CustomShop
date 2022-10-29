@@ -1,0 +1,62 @@
+﻿@model CustomShop.Models.Purchase
+@using CustomShop.Models;
+
+@{
+    ViewBag.Title = "Деталі";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="purchase-details">
+    <h1 class="centered">Деталі</h1>
+    <hr />
+
+    <h2 class="centered">Замовлення:</h2>
+    <div class="centered">
+        <p>Код: @Model.Id</p>
+        <p>Статус: @Model.PurchaseState.Name</p>
+        <p>Сума: @Math.Round(Model.Price, 2)</p>
+        <p>Дата: @Model.Date.ToString("D")</p>
+        @Html.ActionLink("Змінити статус", "Edit", new { id = Model.Id })
+    </div>
+    <hr />
+
+    <h2 class="centered">Клієнт:</h2>
+    <div class="centered">
+        <p>Замовник: @Model.Client.Name @Model.Client.Surname @Model.Client.LastName</p>
+        <p>Телефон: @Model.Client.PhoneNumber</p>
+        <p>Електронна пошта: @Model.Client.E_Mail</p>
+        <p>Адреса: @Model.Client.Adress (@Model.Client.PostIndex)</p>
+        <p>Пошта: @Model.Client.Post.Name</p>
+        @Html.ActionLink("Редагувати інформацію", "EditClient", new { id = Model.Id })
+    </div>
+    <hr />
+
+    <h2 class="centered">Товар:</h2>
+    <div class="good-grid-box">
+        @foreach (Cart item in Model.Cart)
+        {
+            <div class="good-box bordered">
+                <div class="good-img-cart">
+                    @Html.Raw("<img  src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.Good.Image) + "\" />")
+                </div>
+
+                <div class="info-about-good">
+                    <p><b>@item.Good.Name</b></p>
+                    <p class="price"><b>@Math.Round(item.Good.Price, 2) ₴</b></p>
+
+                    <div class="color-list sizes-list">
+                        <div style="background-color: @item.Color.Code;"></div>
+                        <div>@item.Size.Name</div>
+                    </div>
+                </div>
+                @Html.ActionLink("Видалити", "DeleteGoodFromCart", new { id = item.Id }, new { @class = "delete-good-from-cart centered" })
+                @Html.ActionLink("Редагувати", "EditGoodFromCart", new { id = item.Id }, new { @class = " centered edit-link" })
+            </div>
+        }
+
+    </div>
+
+    <div class="bottom-links centered no-side-margin">
+        @Html.ActionLink("Видалити усе замовлення", "Delete", new { id = Model.Id }, new { @class = "deleteButton" })
+        @Html.ActionLink("Повернутись до списку", "Index")
+    </div>
+</div>

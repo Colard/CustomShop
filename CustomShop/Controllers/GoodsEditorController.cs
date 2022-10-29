@@ -71,7 +71,7 @@ namespace CustomShop.Controllers
         [HttpPost]
         public ActionResult Create(Good good, string colorslist, HttpPostedFileBase uploadImage)
         {
-            if (!ModelState.IsValid || uploadImage == null)
+            if (!ModelState.IsValid || uploadImage == null || String.IsNullOrEmpty(colorslist))
             {
                 ViewBag.GoodTypeId = new SelectList(db.GoodTypes, "Id", "Name", good.GoodTypeId);
                 return View(good);
