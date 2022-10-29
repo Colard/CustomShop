@@ -14,8 +14,9 @@ namespace CustomShop.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var list = db.Purchases.Include(el => el.Client);
-            return View(db.Purchases);
+            var list = db.Purchases.Include(el => el.Client).ToList();
+            list.Reverse();
+            return View(list);
         }
     }
 }
