@@ -13,11 +13,11 @@
             <a href="/Home/Index"><h1>ddd.Shop</h1></a>
         </div>
         <div class="site-nav-bar">
-            @Html.ActionLink("Усі товари", "Index", "Goods", new { }, null)
-            @Html.ActionLink("Худі та світшоти", "Index", "Goods", new { }, null)
-            @Html.ActionLink("Футболки", "Index", "Goods", new { }, null)
-            @Html.ActionLink("Штани та шорти", "Index", "Goods", new { }, null)
-            @Html.ActionLink("Аксесуари", "Index", "Goods", new { }, null)
+            @Html.ActionLink("Усі товари", "Index", "Goods", new { filter = "Усі товари" }, null)
+            @Html.ActionLink("Худі та світшоти", "Index", "Goods", new { filter = "Худі та світшоти" }, null)
+            @Html.ActionLink("Футболки", "Index", "Goods", new { filter = "Футболки" }, null)
+            @Html.ActionLink("Штани та шорти", "Index", "Goods", new { filter = "Штани та шорти" }, null)
+            @Html.ActionLink("Аксесуари", "Index", "Goods", new { filter = "Аксесуари" }, null)
             <a href="/Home/Cart">
                 <div class="cart-link">
                     <p class="cart-count"></p>

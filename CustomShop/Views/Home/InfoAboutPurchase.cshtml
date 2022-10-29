@@ -1,0 +1,47 @@
+﻿@model CustomShop.Models.Purchase
+@using CustomShop.Models
+
+@{
+    ViewBag.Title = "InfoAboutPurchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="centered">
+    <h3>Для доступу до чеку збережіть сторінку або наступне посилання:</h3>
+    <p class="link-viewer"></p>
+    <div class="purchase-check">
+        <h3 class="centered">Замовлення: №@Model.Id</h3>
+        <h3 class="centered">Статус: "@Model.PurchaseState.Name"</h3>
+        <p><b>Список товарів:</b></p>
+
+        @foreach (Cart item in Model.Cart)
+        {
+            <div class="good-from-cart">
+                <div style="display:flex">
+                    <p class="cart-name">@item.Good.Name (@item.Size.Name) </p>
+                    <div class="color-block-cart" style="background-color: @item.Color.Code"></div>
+                </div>
+
+                <p class="cart-price">@Math.Round(item.Good.Price, 2)</p>
+            </div>
+
+        }
+
+        <p><b>Замовник: </b>@Model.Client.Name @Model.Client.Surname @Model.Client.LastName</p>
+        <p><b>Номер телефону: </b>@Model.Client.PhoneNumber</p>
+        <p><b>Електронна адреса: </b>@Model.Client.E_Mail</p>
+        <p><b>Адреса доставки: </b>@Model.Client.Adress (@Model.Client.PostIndex)</p>
+        <p><b>Тип доставки: </b>@Model.Client.Post.Name</p>
+        <p><b>Дата замовлення: </b>@Model.Date.ToString("D")</p>
+
+        <h3 class="centered">До сплати: @Math.Round(Model.Price, 2)</h3>
+    </div>
+    <div class="bottom-links centered return-to-shop">
+        @Html.ActionLink("Повернутись до покупок", "Index", "Goods")
+    </div>
+</div>
+
+
+
+

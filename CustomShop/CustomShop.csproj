@@ -237,6 +237,7 @@
     <Content Include="Views\Goods\Details.cshtml" />
     <Content Include="Views\Home\AddPurchase.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\InfoAboutPurchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202210260958217_v1.1.resx">

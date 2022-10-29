@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using CustomShop.Models;
-
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 namespace CustomShop.Controllers
 {
     public class GoodsController : Controller
@@ -13,11 +14,42 @@ namespace CustomShop.Controllers
         // GET: Goods
         private ShopContext db = new ShopContext();
 
-        public ActionResult Index(string filter = null, int? min = null, int? max = null)
+        public ActionResult Index(string filter = null, int? min = null, int? max = null, string searchText = null)
         {
-            var listOfGoods = db.Goods.ToList();
-            listOfGoods.Reverse();
-            return View(listOfGoods);
+            ViewBag.Filter = filter ?? "Усі товари";
+            ViewBag.Min = min;
+            ViewBag.Max = max;
+            ViewBag.SearchText = searchText;
+            IQueryable<Good> listOfGoods = db.Goods;
+
+            if (!String.IsNullOrEmpty(searchText))
+            {
+                listOfGoods = listOfGoods.Where(el => el.Name.ToLower().IndexOf(searchText.ToLower()) >= 0);
+            }
+
+            if (min != null)
+            {
+                listOfGoods = listOfGoods.Where(el => el.Price >= min);
+            }
+
+            if (max != null)
+            {
+                listOfGoods = listOfGoods.Where(el => el.Price <= max);
+            }
+
+            if (!String.IsNullOrEmpty(filter))
+                switch (filter.ToLower())
+                {
+                    case "худі та світшоти": listOfGoods = listOfGoods.Where(el => el.GoodTypeId == 1 || el.GoodTypeId == 2); break;
+                    case "футболки": listOfGoods = listOfGoods.Where(el => el.GoodTypeId == 3); break;
+                    case "штани та шорти": listOfGoods = listOfGoods.Where(el => el.GoodTypeId == 4 || el.GoodTypeId == 5); break;
+                    case "аксесуари": listOfGoods = listOfGoods.Where(el => el.GoodTypeId == 6); break;
+                }
+
+
+            var filteredlistOfGoods = listOfGoods.ToList();
+            filteredlistOfGoods.Reverse();
+            return View(filteredlistOfGoods);
         }
 
         public ActionResult Details(int? id)

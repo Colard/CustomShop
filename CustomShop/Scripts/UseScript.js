@@ -218,5 +218,10 @@ function addToCartLink(errorPlace, listener, target) {
     }
 })();
 
+(function viewLink() {
+    let p = document.querySelector(".link-viewer");
+    if (p) p.innerHTML = location.href;
+})()
+
 choser(".color-list.cheker");
 choser(".sizes-list.cheker");

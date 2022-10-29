@@ -8,6 +8,11 @@ using CustomShop.Models;
 using System.Text.Json;
 using System.ComponentModel;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
+using System.Net;
 
 namespace CustomShop.Controllers
 {
@@ -25,9 +30,17 @@ namespace CustomShop.Controllers
         public Color Color { set; get; }
     }
 
+    class GoodInfo
+    {
+        public int goodId { get; set; }
+        public int colorId { get; set; }
+        public int sizeId { get; set; }
+    }
+
     public class HomeController : Controller
     {
         ShopContext db = new ShopContext();
+
         public ActionResult Index()
         {
             return View(db.Sizes);
@@ -138,7 +151,8 @@ namespace CustomShop.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Goods");
+            string encryptedId = HttpUtility.UrlEncode(Encrypt(purch.Id.ToString()));
+            return RedirectToAction("InfoAboutPurchase", "Home", new { id = encryptedId });
         }
 
         public ActionResult About()
@@ -153,6 +167,106 @@ namespace CustomShop.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult InfoAboutPurchase(string id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            int purchaseID;
+
+            try
+            {
+                purchaseID = Int32.Parse(Decrypt(HttpUtility.UrlDecode(id)));
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+
+            var purchase = db.Purchases.Find(purchaseID);
+            purchase.Client = db.Clients.Find(purchase.ClientId);
+            purchase.Client.Post = db.Posts.Find(purchase.Client.PostId);
+
+            purchase.PurchaseState = db.PurchaseStates.Find(purchase.PurchaseStateId);
+
+            purchase.Cart = db.Carts.Include(el => el.Good).Include(el => el.Size).Include(el => el.Color).Where(el => el.PurchaseId == purchase.Id);
+            return View(purchase);
+        }
+
+        private static string Encrypt(string ishText, string pass = "gno34uhuGSsfhe4sa",
+        string sol = "asddsa", string cryptographicAlgorithm = "SHA1",
+        int passIter = 2, string initVec = "a8doSuDitOz1hZe#",
+         int keySize = 256)
+        {
+            if (string.IsNullOrEmpty(ishText))
+                return "";
+
+            byte[] initVecB = Encoding.ASCII.GetBytes(initVec);
+            byte[] solB = Encoding.ASCII.GetBytes(sol);
+            byte[] ishTextB = Encoding.UTF8.GetBytes(ishText);
+
+            PasswordDeriveBytes derivPass = new PasswordDeriveBytes(pass, solB, cryptographicAlgorithm, passIter);
+            byte[] keyBytes = derivPass.GetBytes(keySize / 8);
+            RijndaelManaged symmK = new RijndaelManaged();
+            symmK.Mode = CipherMode.CBC;
+
+            byte[] cipherTextBytes = null;
+
+            using (ICryptoTransform encryptor = symmK.CreateEncryptor(keyBytes, initVecB))
+            {
+                using (MemoryStream memStream = new MemoryStream())
+                {
+                    using (CryptoStream cryptoStream = new CryptoStream(memStream, encryptor, CryptoStreamMode.Write))
+                    {
+                        cryptoStream.Write(ishTextB, 0, ishTextB.Length);
+                        cryptoStream.FlushFinalBlock();
+                        cipherTextBytes = memStream.ToArray();
+                        memStream.Close();
+                        cryptoStream.Close();
+                    }
+                }
+            }
+
+            symmK.Clear();
+            return Convert.ToBase64String(cipherTextBytes);
+        }
+
+        private static string Decrypt(string ciphText, string pass = "gno34uhuGSsfhe4sa",
+               string sol = "asddsa", string cryptographicAlgorithm = "SHA1",
+               int passIter = 2, string initVec = "a8doSuDitOz1hZe#",
+               int keySize = 256)
+        {
+            if (string.IsNullOrEmpty(ciphText))
+                return "";
+
+            byte[] initVecB = Encoding.ASCII.GetBytes(initVec);
+            byte[] solB = Encoding.ASCII.GetBytes(sol);
+            byte[] cipherTextBytes = Convert.FromBase64String(ciphText);
+
+            PasswordDeriveBytes derivPass = new PasswordDeriveBytes(pass, solB, cryptographicAlgorithm, passIter);
+            byte[] keyBytes = derivPass.GetBytes(keySize / 8);
+
+            RijndaelManaged symmK = new RijndaelManaged();
+            symmK.Mode = CipherMode.CBC;
+
+            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+            int byteCount = 0;
+
+            using (ICryptoTransform decryptor = symmK.CreateDecryptor(keyBytes, initVecB))
+            {
+                using (MemoryStream mSt = new MemoryStream(cipherTextBytes))
+                {
+                    using (CryptoStream cryptoStream = new CryptoStream(mSt, decryptor, CryptoStreamMode.Read))
+                    {
+                        byteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                        mSt.Close();
+                        cryptoStream.Close();
+                    }
+                }
+            }
+
+            symmK.Clear();
+            return Encoding.UTF8.GetString(plainTextBytes, 0, byteCount);
         }
     }
 
@@ -182,10 +296,4 @@ namespace CustomShop.Controllers
         }
     }
 
-    class GoodInfo
-    {
-        public int goodId { get; set; }
-        public int colorId { get; set; }
-        public int sizeId { get; set; }
-    }
 }

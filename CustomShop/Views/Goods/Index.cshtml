@@ -6,7 +6,32 @@
 }
 
 <center>
-
+    <div class="good-filter-box">
+        <h2>Розширений пошук:</h2>
+        <form method="get">
+            <div>
+                <p>Секція:</p>
+                <p><b>@ViewBag.Filter</b></p>
+                <input value="@ViewBag.Filter" name="filter" hidden />
+            </div>
+            <div>
+                <p>Елементи назви:</p>
+                <input name="searchText" value="@ViewBag.SearchText" />
+            </div>
+            <div>
+                <p>Мінімальна ціна:</p>
+                <input name="min" type="number" min="0" value="@ViewBag.Min" />
+            </div>
+            <div>
+                <p>Макисмальна ціна:</p>
+                <input name="max" type="number" min="0" value="@ViewBag.Max" />
+            </div>
+            <div>
+                <p>Шукати: </p>
+                <input type="submit" value="Шукати" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
     <div class="good-grid-box">
         @foreach (Good item in Model)
         {
