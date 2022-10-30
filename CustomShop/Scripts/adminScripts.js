@@ -99,3 +99,38 @@ function createMapOfTags() {
         );
     }
 })();
+
+(function removeFromCart() {
+    let links = document.querySelectorAll(".delete-good-from-cart");
+
+    if (links) {
+        for (let el of links) {
+            el.addEventListener('click', listener);
+        }
+    }
+
+    function listener(e) {
+        e.preventDefault();
+        let link = e.target;
+
+        let YorN = confirm("Ви впевненні що бажаєте видалити даний елемент ?");
+        if (!YorN) return;
+
+        confirmDelete(listener, link);
+    }
+
+    function confirmDelete(listener, link) {
+        link.removeEventListener('click', listener);
+        link.click();
+    }
+})();
+
+(function removeFromCart() {
+    let select = document.querySelector(".dynamic-colors");
+
+    if (select) {
+        select.style.backgroundColor = select.options[select.selectedIndex].getAttribute("color");
+        select.addEventListener('change', () => select.style.backgroundColor = select.options[select.selectedIndex].getAttribute("color"));
+    }
+
+})();

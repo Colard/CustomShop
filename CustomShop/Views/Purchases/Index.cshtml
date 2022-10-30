@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CustomShop.Models.Purchase>
+
+@{
+    ViewBag.Title = "Замовлення";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="purchases-header">
+    <div class="site-nav-bar">
+        @Html.ActionLink("Усі замовлення", "Index")
+        @Html.ActionLink("Нові", "Index", new {filter = 1})
+        @Html.ActionLink("В процесі", "Index", new { filter = 2})
+        @Html.ActionLink("Готові", "Index", new { filter = 3})
+    </div>
+</div>
+
+@{ 
+
+}
+
+<div class="create-form centered-div">
+    <h2>Список замовлень</h2>
+    <div class="order-info">
+        <p>Цього місяця продано @ViewBag.PurchaseCount замовлень на суму @Math.Round(ViewBag.Money, 2) грн.</p>
+        <p class="centered">Кількість нових замовлень: @ViewBag.NewPurchaseCount</p>
+    </div>
+
+
+    <div class="search">
+        <form method="get">
+            <div>
+                <input value="@ViewBag.Filter" name="filter" hidden />
+            </div>
+            <div>
+                <p>Код:</p>
+                <input name="code" type="number" min="0" value="@ViewBag.Code" />
+            </div>
+            <div>
+                <p>Замовник:</p>
+                <input name="searchText" value="@ViewBag.SearchText" />
+            </div>
+            <div>
+                <p>Пошук: </p>
+                <input type="submit" value="Шукати" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Номер
+            </th>
+            <th>
+                Замовник
+            </th>
+            <th>
+                Статус
+            </th>
+            <th>
+                Ціна
+            </th>
+            <th>
+                Дата
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @{
+                        string fullName = item.Client.Name + " " + item.Client.Surname;
+                    }
+                    @Html.DisplayFor(modelItem => fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseState.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @{
+                        string date = item.Date.ToString("D");
+                    }
+
+                    @Html.DisplayFor(modelItem => date)
+                </td>
+                <td>
+                    @Html.ActionLink("Змінити статус", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Деталі", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

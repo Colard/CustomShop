@@ -1,0 +1,65 @@
+﻿@model CustomShop.Models.Cart
+@using CustomShop.Models
+
+@{
+    ViewBag.Title = "EditGoodFromCart";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="centered edit-good-in-cart">
+    <h2>Редагувати замовлення</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.GoodId)
+        @Html.HiddenFor(model => model.PurchaseId)
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="img-info">
+                @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.Good.Image) + "\" />")
+            </div>
+            <h2 class="centered">@Model.Good.Name</h2>
+            <div class=" edit-good-in-cart-lists">
+                <div class="edit-form">
+                    @Html.LabelFor(model => model.SizeId, "Розмір", htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.DropDownList("SizeId", null, htmlAttributes: new { @class = "form-control small-list" })
+                    </div>
+                </div>
+
+                <div class="edit-form">
+                    @Html.LabelFor(model => model.ColorId, "Колір", htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        <select class="form-control small-list dynamic-colors" id="ColorId" name="ColorId">
+                            @foreach (Color el in Model.Good.Colors)
+                            {
+                                if (el.Id == Model.ColorId)
+                                {
+                                    <option selected="selected" value="@el.Id" style="background-color: @el.Code;" color="@el.Code"></option>
+                                }
+                                else
+                                {
+                                    <option value="@el.Id" style="background-color: @el.Code;" color="@el.Code"></option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="centered">
+                    <input type="submit" value="Зберегти" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="bottom-links centered no-side-margin">
+        @Html.ActionLink("Повернутись до замовлення", "Details", new {id = Model.PurchaseId })
+    </div>
+</div>

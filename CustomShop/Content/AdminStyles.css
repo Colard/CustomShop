@@ -125,3 +125,114 @@ body .create-form form {
 body .container .disabled-border {
     border:none;
 }
+
+body .purchases-header {
+    margin-top: 10px;
+}
+
+body .purchases-header .site-name {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #83CAFC;
+}
+
+body .purchases-header a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+body .purchases-header .site-nav-bar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+    background-color: #0a0a0a;
+}
+
+body .edit-form .small-list {
+    width: 100px;
+    height: 35px;
+}
+
+body .edit-form .small-list option {
+    height: 35px;
+}
+
+body .container .edit-good-in-cart {
+    width: 100%;
+}
+
+body .container .edit-good-in-cart .form-horizontal{
+    width: 100%;
+}
+
+body .container .edit-good-in-cart form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+body .container .edit-good-in-cart .edit-form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+body .container .edit-good-in-cart .edit-good-in-cart-lists {
+    display:flex;
+    justify-content: center;
+}
+
+body .container .edit-good-in-cart .edit-good-in-cart-lists > * {
+    margin: 10px;
+}
+
+body .edit-link {
+    font-size: 20px;
+}
+
+body .purchase-details {
+    font-size:20px
+}
+
+body .save-link {
+    margin: 10px 0;
+}
+
+body .purchase-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body .purchase-form .form-group {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+    body .purchase-form .form-group .control-label {
+        width: auto;
+        text-align: left;
+    }
+
+body .purchase-form .form-horizontal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body .purchase-form .submit-button {
+    width: 200px;
+    margin: 10px 0;
+}
+
+body .container .order-info {
+    padding: 0;
+}
