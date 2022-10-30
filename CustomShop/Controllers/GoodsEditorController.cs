@@ -14,6 +14,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace CustomShop.Controllers
 {
+    [Authorize]
     public class GoodsEditorController : Controller
     {
         private ShopContext db = new ShopContext();

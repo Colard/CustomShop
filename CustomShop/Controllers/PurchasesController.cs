@@ -10,6 +10,7 @@ using CustomShop.Models;
 using System.Diagnostics;
 namespace CustomShop.Controllers
 {
+    [Authorize]
     public class PurchasesController : Controller
     {
         private ShopContext db = new ShopContext();
