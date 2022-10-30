@@ -7,7 +7,7 @@
 
 <center>
     <div class="good-filter-box">
-        <h2>Розширений пошук:</h2>
+        <h2 class="search-active-text" onclick="viewSearcher(this)">Розширений пошук</h2>
         <form method="get">
             <div>
                 <p>Секція:</p>
@@ -52,3 +52,10 @@
     </div>
 
 </center>
+
+<script>
+    function viewSearcher(x) {
+        document.querySelector("body .content .good-filter-box form").classList.toggle("active");
+    }
+
+</script>

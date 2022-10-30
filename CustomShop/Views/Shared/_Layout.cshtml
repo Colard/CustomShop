@@ -8,22 +8,33 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
+
+    <header class="navbar">
         <div class="site-name">
             <a href="/Home/Index"><h1>ddd.Shop</h1></a>
         </div>
         <div class="site-nav-bar">
-            @Html.ActionLink("Усі товари", "Index", "Goods", new { filter = "Усі товари" }, null)
-            @Html.ActionLink("Худі та світшоти", "Index", "Goods", new { filter = "Худі та світшоти" }, null)
-            @Html.ActionLink("Футболки", "Index", "Goods", new { filter = "Футболки" }, null)
-            @Html.ActionLink("Штани та шорти", "Index", "Goods", new { filter = "Штани та шорти" }, null)
-            @Html.ActionLink("Аксесуари", "Index", "Goods", new { filter = "Аксесуари" }, null)
-            <a href="/Home/Cart">
-                <div class="cart-link">
-                    <p class="cart-count"></p>
-                </div>
-            </a>
+            <div class="menu-container" onclick="menuAnimation(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="adaptive-block">
+                @Html.ActionLink("Усі товари", "Index", "Goods")
+                @Html.ActionLink("Футболки", "Index", "Goods", new { filter = "Футболки" }, null)
+                @Html.ActionLink("Худі та світшоти", "Index", "Goods", new { filter = "Худі та світшоти" }, null)
+                @Html.ActionLink("Штани та шорти", "Index", "Goods", new { filter = "Штани та шорти" }, null)
+                @Html.ActionLink("Аксесуари", "Index", "Goods", new { filter = "Аксесуари" }, null)
+            </div>
+            <div>
+                <a href="/Home/Cart">
+                    <div class="cart-link">
+                        <p class="cart-count"></p>
+                    </div>
+                </a>
+            </div>
         </div>
+
     </header>
 
     <div class="container">
@@ -62,6 +73,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/UseScript.js")
+    <script>
+        function menuAnimation(x) {
+            x.classList.toggle("change");
+            document.querySelector(".adaptive-block").classList.toggle("active");
+        }
+
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
