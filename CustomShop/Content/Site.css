@@ -9,10 +9,11 @@ body * {
 hr {
     width: 100%;
     border-color: #555;
+    border-bottom: 1px solid #555;
 }
 
 body h1 {
-    color: #333;
+    color: white;
 }
 
 body a {
@@ -21,12 +22,17 @@ body a {
     transition: color 0.3s
 }
 
-    body a:hover {
-        text-decoration: none;
-        color: white;
-    }
+body a:hover {
+    text-decoration: none;
+    color: white;
+}
 
-body header {
+body .site-name img {
+    height: 80px;
+    width: auto;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 body header .site-name {
@@ -35,25 +41,58 @@ body header .site-name {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #83CAFC;
+    background-color: #631c78;
+    position:relative;
 }
 
-    body header .site-name a {
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
+body header .site-name a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
 
-    body header .site-nav-bar {
-        height: 100px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        font-size: 20px;
-        background-color: #0a0a0a;
-        position: relative;
-    }
+body .main-info {
+    width:100%;
+}
+
+body .main-info p{
+    font-size:25px;
+    text-align: center;
+}
+
+
+
+body header .site-nav-bar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+    background-color: #0a0a0a;
+    position: relative;
+}
+
+body .about-page p {
+    font-size: 18px;
+}
+
+body .about-page li {
+    font-size: 18px;
+}
+
+body img.banner-adaptive {
+    width:100%;
+    height:auto;
+    display: none;
+}
+
+body img.banner {
+    width: 100%;
+    height: auto;
+}
 
 body footer {
     height: auto;
@@ -544,6 +583,14 @@ body header .adaptive-block > * {
 
     body .content .good-grid-box {
         grid-template-columns: 1fr;
+    }
+
+    body img.banner-adaptive {
+        display: block;
+    }
+
+    body img.banner {
+        display: none;
     }
 }
 

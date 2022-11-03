@@ -66,7 +66,7 @@ namespace CustomShop.Controllers
                     Color Color = db.Colors.Find(item.colorId);
                     if (Color.GoodId != item.goodId) Color = null;
 
-                    if (Good != null || Size != null || Color != null)
+                    if (Good != null && Size != null && Color != null)
                     {
                         ViewBag.Price += Good.Price;
                         goods.Add(new GoodSettings(Good, Size, Color));
@@ -157,15 +157,6 @@ namespace CustomShop.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

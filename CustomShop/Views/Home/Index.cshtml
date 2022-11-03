@@ -1,33 +1,23 @@
 ﻿@model IEnumerable<CustomShop.Models.Size>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Головна";
 }
 
-<h2>Index</h2>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+<div class="main-info">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <p class="centered">Магазин заснований в 2022 році творчою людиною, яка поєдналиа стиль і зручність.</p>
 
-</table>
+    <p class="centered">Речі створюються для молодих людей, що стороняться стереотипів, люблять комфорт, якість і вибирають “залишатися собою”.</p>
+
+    <p class="centered">Цей одяг для сучасної аудиторії, що живе в потоці інформації і вільної від громадських рамок.</p>
+    <p class="centered">Кожна річ виготовлена з високоякісних матеріалів.</p>
+
+    <p class="centered">Речі розраховані для чоловіків і жінок, хлопців і дівчат, хлопчиків і дівчаток! Для усіх, хто вибирає індивідуальність і свободу.</p>
+</div>
+<hr />
+<img class="banner-adaptive" src="~/Content/img/46.png" />
+<img class="banner" src="~/Content/img/47.png" />
+<hr />

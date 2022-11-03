@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ddd.Shop</title>
+    <link href="~/Content/img/45.ico" type="image/x-icon" rel ="shotcut  icon"/>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -11,6 +12,7 @@
 
     <header class="navbar">
         <div class="site-name">
+            <img src="/Content/img/45.png">
             <a href="/Home/Index"><h1>ddd.Shop</h1></a>
         </div>
         <div class="site-nav-bar">
@@ -46,12 +48,12 @@
     <footer>
         <div class="footer-info">
             <div class="footer-logo">
-                <img class="logo" />
+                <img class="logo" src="~/Content/img/45.png"/>
             </div>
             <div class="footer-about-us">
                 <p><b>Додатково:</b></p>
-                <a href="">Про нас</a>
-                <a href="">Замовлення, доставка</a>
+                <p><a href="/Home/About">Питання-відповідь</a></p>
+                <p>Tел: 0 (98) 707 38 70</p>
             </div>
             <div class="footer-work-info">
                 <p><b>Графік роботи:</b></p>
