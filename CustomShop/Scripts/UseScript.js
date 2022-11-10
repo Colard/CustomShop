@@ -41,6 +41,7 @@ function addToCart(goodId, colorId, sizeId) {
     setCookie("cart", JSON.stringify(cart));
 }
 
+//Додавання надпису новинка
 (function newAdder() {
     let nodeList = document.querySelectorAll(".good-grid-box .good-img");
 
@@ -54,6 +55,7 @@ function addToCart(goodId, colorId, sizeId) {
     }
 })();
 
+//Можливість вибору елементів
 function choser(parentSelector) {
     let nodeList = document.querySelector(parentSelector);
 
@@ -69,6 +71,7 @@ function choser(parentSelector) {
     }
 };
 
+//Конвертація тегів
 (function convertTextToHTML() {
     const Tags = createMapOfTags();
     Tags.set();
@@ -85,6 +88,7 @@ function choser(parentSelector) {
 
 })();
 
+//Словник тегів
 function createMapOfTags() {
     const Tags = new Map();
 
@@ -98,6 +102,7 @@ function createMapOfTags() {
     return Tags;
 };
 
+//Додавання можливості додавання в крзину
 (function activeCartAdder() {
     let errorPlace = document.querySelector(".error-place");
     let adderLink = document.querySelector(".add-to-cart");
@@ -111,6 +116,7 @@ function createMapOfTags() {
 
 })();
 
+//додавання події до кнопки покупки
 function addToCartLink(errorPlace, listener, target) {
     let size = document.querySelector(".info-panel .sizes-list .active");
     let color = document.querySelector(".info-panel .color-list .active");
@@ -130,6 +136,7 @@ function addToCartLink(errorPlace, listener, target) {
     target.click();
 }
 
+//Підрахунок кількості товару
 (function dynamicCart() {
     let countText = document.querySelector(".cart-link .cart-count");
 
@@ -147,6 +154,7 @@ function addToCartLink(errorPlace, listener, target) {
     if (countText) countText.innerHTML = count;
 })();
 
+//Перевірка корзини
 (function checkCartGoods() {
     let link = document.querySelector(".bottom-links.check-cart-goods a");
 
